@@ -10,18 +10,18 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os,sys
+import os
+import sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0,os.path.join(BASE_DIR,'apps'))
 
-# 改写导包路径
-sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 't0j54it_+h2zbpy*f33n#pj+ohql-29y^h@p=5t3@!an8n=u(j'
+SECRET_KEY = 'n%1bb#ekoe^e-*b_g2*av929780rljv_td4hxz3!qirm$10jw6'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,6 +38,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+
+    'users.apps.UsersConfig',
+    'courses.apps.CoursesConfig',
+    'operation.apps.OperationConfig',
+    'organization.apps.OrganizationConfig'
 ]
 
 MIDDLEWARE = [
@@ -55,7 +61,7 @@ ROOT_URLCONF = 'boxuegu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -71,11 +77,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'boxuegu.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-
 DATABASES = {
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'HOST': '127.0.0.1',  # 数据库主机
         'PORT': 3306,  # 数据库端口
@@ -83,18 +86,9 @@ DATABASES = {
         'PASSWORD': 'mysql',  # 数据库用户密码
         'NAME': 'boxuegu'  # 数据库名字
     },
+
 }
-# 缓存
-CACHES = {
-    "default": {  # 默认
-        "BACKEND": "django_redis.cache.RedisCache",
-        # 可修改：ip、端口、数据库编号
-        "LOCATION": "redis://127.0.0.1:6379/0",
-        "OPTIONS": {
-            "CLIENT_CLASS": "django_redis.client.DefaultClient",
-        }
-    },
-}
+AUTH_USER_MODEL = 'users.UserProfile'  # 应用名称.模型类名称
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -133,47 +127,4 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
-# 静态文件路径
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-
-# LOGGING = {
-#     'version': 1,
-#     'disable_existing_loggers': False,  # 是否禁用已经存在的日志器
-#     'formatters': {  # 日志信息显示的格式
-#         'verbose': {
-#             'format': '%(levelname)s %(asctime)s %(module)s %(lineno)d %(message)s'
-#         },
-#         'simple': {
-#             'format': '%(levelname)s %(module)s %(lineno)d %(message)s'
-#         },
-#     },
-#     'filters': {  # 对日志进行过滤
-#         'require_debug_true': {  # django在debug模式下才输出日志
-#             '()': 'django.utils.log.RequireDebugTrue',
-#         },
-#     },
-#     'handlers': {  # 日志处理方法
-#         'console': {  # 向终端中输出日志
-#             'level': 'INFO',
-#             'filters': ['require_debug_true'],
-#             'class': 'logging.StreamHandler',
-#             'formatter': 'simple'
-#         },
-#         'file': {  # 向文件中输出日志
-#             'level': 'INFO',
-#             'class': 'logging.handlers.RotatingFileHandler',
-#             'filename': os.path.join(os.path.dirname(BASE_DIR), 'logs/boxuegu.log'),  # 日志文件的位置
-#             'maxBytes': 300 * 1024 * 1024,
-#             'backupCount': 10,
-#             'formatter': 'verbose'
-#         },
-#     },
-#     'loggers': {  # 日志器
-#         'django': {  # 定义了一个名为django的日志器
-#             'handlers': ['console', 'file'],  # 可以同时向终端与文件中输出日志
-#             'propagate': True,  # 是否继续传递日志信息
-#             'level': 'INFO',  # 日志器接收的最低日志级别
-#         },
-#     }
-# }
+STATICFILES_DIRS = [os.path.join(BASE_DIR,'static')] # 静态路径

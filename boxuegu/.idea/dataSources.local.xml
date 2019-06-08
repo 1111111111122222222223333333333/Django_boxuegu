@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="dataSourceStorageLocal">
-    <data-source name="boxuegu@localhost" uuid="3c5d763f-7d20-470e-96ff-155fb87877d1">
-      <database-info product="MySQL" version="5.7.26-0ubuntu0.16.04.1-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
-        <extra-name-characters>#@</extra-name-characters>
-        <identifier-quote-string>`</identifier-quote-string>
-      </database-info>
-      <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
+    <data-source name="boxuegu@localhost" uuid="d5235787-cd4c-4794-8c10-127be6c4be0e">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
       <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
       <user-name>root</user-name>
-      <resolve-scope>boxuegu:</resolve-scope>
+    </data-source>
+    <data-source name="@localhost" uuid="1fbf75d0-f5d4-45d5-b5e6-c4303875bcbb">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" />
+      <secret-storage>master_key</secret-storage>
+      <first-sync>true</first-sync>
     </data-source>
   </component>
 </project>
