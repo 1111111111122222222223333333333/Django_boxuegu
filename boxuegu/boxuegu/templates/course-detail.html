@@ -6,7 +6,7 @@
     <section>
         <div class="wp">
             <ul class="crumbs">
-                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:index' %}">首页</a>></li>
                 <li><a href="{% url 'courses:course_list' %}">公开课程:{{ course.name }}</a>></li>
                 <li>课程详情</li>
             </ul>
@@ -153,7 +153,7 @@ function add_fav(current_elem, fav_id, fav_type) {
     success: function (data) {
       if (data.status == 'fail') {
         if (data.msg == '用户未登录') {
-          window.location.href = "{% url 'login' %}";
+          window.location.href = "{% url 'users:login' %}";
         } else {
           current_elem.text(data.msg)
         }

@@ -38,6 +38,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'courses.apps.CoursesConfig',
+    'operation.apps.OperationConfig',
+    'organization.apps.OrganizationConfig',
+    'users.apps.UsersConfig',
+
+    #xadmin
+    'xadmin',#添加
+    'crispy_forms',#添加
+    'reversion',#添加(可选)
+    'captcha', # 图片验证码模块
+    'pure_pagination',
+
 ]
 
 MIDDLEWARE = [
@@ -51,15 +63,19 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'boxuegu.urls'
+# 指定用户模型类
+AUTH_USER_MODEL='users.UserProfile'
+
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR,'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -135,6 +151,27 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # 静态文件路径
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
+STATIC_ROOT = os.path.join(os.path.dirname(__file__),'static')
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'static/media')
+
+PAGINATION_SETTINGS = {
+    'PAGE_RANGE_DISPLAYED': 10,
+    'MARGIN_PAGES_DISPLAYED': 2,
+
+    'SHOW_FIRST_PAGE_WHEN_INVALID': True,
+}
+
+
+# 邮件服务器配置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # 指定邮件后端
+EMAIL_HOST = 'smtp.163.com'  # 发邮件主机
+EMAIL_PORT = 25  # 发邮件端口
+EMAIL_HOST_USER = 'hmmeiduo@163.com'  # 授权的邮箱
+EMAIL_HOST_PASSWORD = 'hmmeiduo123'  # 邮箱授权时获得的密码，非注册登录密码
+EMAIL_FROM = '美多商城<hmmeiduo@163.com>'  # 发件人抬头
+EMAIL_VERIFY_URL = 'http://127.0.0.1:8000/reset/'
 
 
 # LOGGING = {

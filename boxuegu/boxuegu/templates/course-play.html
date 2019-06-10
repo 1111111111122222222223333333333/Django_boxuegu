@@ -26,7 +26,7 @@
     <section>
         <div class="wp">
             <ul class="crumbs">
-                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:index' %}">首页</a>></li>
                 <li><a href="{% url 'courses:course_list' %}">公开课程</a> > </li>
                 <li><a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a> > </li>
                 <li>{{ video.name }}</li>

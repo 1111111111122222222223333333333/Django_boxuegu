@@ -1,0 +1,1 @@
+EXPIRE_EMAIL = 600
