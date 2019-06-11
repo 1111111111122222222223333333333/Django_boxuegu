@@ -10,13 +10,14 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os,sys
+import os, sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # 改写导包路径
 sys.path.insert(0, os.path.join(BASE_DIR, 'apps'))
+sys.path.insert(0,os.path.join(BASE_DIR,'xadmin'))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -28,7 +29,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,6 +38,14 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'xadmin',  # 添加
+    'crispy_forms',  # 添加
+    'reversion',
+    'users.apps.UsersConfig',
+    'courses.apps.CoursesConfig',
+    'operation.apps.OperationConfig',
+    'organization.apps.OrganizationConfig',
+    'captcha',
 ]
 
 MIDDLEWARE = [
@@ -55,11 +63,12 @@ ROOT_URLCONF = 'boxuegu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.debug',
+                'django.template.context_processors.media',
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
@@ -70,12 +79,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'boxuegu.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'HOST': '127.0.0.1',  # 数据库主机
         'PORT': 3306,  # 数据库端口
@@ -114,20 +122,18 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
@@ -136,6 +142,8 @@ STATIC_URL = '/static/'
 # 静态文件路径
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
+MEDIA_ROOT = os.path.join(BASE_DIR,"static/media")
+MEDIA_URL = "/media/"
 
 # LOGGING = {
 #     'version': 1,
@@ -177,3 +185,13 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #         },
 #     }
 # }
+AUTH_USER_MODEL = 'users.Userprofile'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' # 指定邮件后端
+EMAIL_HOST = 'smtp.163.com' # 发邮件主机
+EMAIL_PORT = 25 # 发邮件端口
+EMAIL_HOST_USER = 'hmmeiduo@163.com' # 授权的邮箱
+EMAIL_HOST_PASSWORD = 'hmmeiduo123' # 邮箱授权时获得的密码，非注册登录密码
+EMAIL_FROM = '美多商城<hmmeiduo@163.com>'
+EMAIL_VERIFY_URL='127.0.0.1:8000/reset/'

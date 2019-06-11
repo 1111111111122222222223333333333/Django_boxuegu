@@ -17,8 +17,8 @@
       <p class="fl hd-tips">博学谷在线，在线学习平台！</p>
       <ul class="fr hd-bar">
         <li>服务电话：<span>010-56288220</span></li>
-        <li><a href="{% url 'login' %}">[登录]</a></li>
-        <li class="active"><a href="{% url 'register' %}">[注册]</a></li>
+        <li><a href="{% url 'users:login' %}">[登录]</a></li>
+        <li class="active"><a href="{% url 'users:register' %}">[注册]</a></li>
       </ul>
     </div>
   </div>
@@ -27,9 +27,9 @@
   <div class="c-box bg-box">
     <div class="login-box clearfix">
       <div class="hd-login clearfix">
-        <a class="index-logo" href="{% url 'index' %}"></a>
+        <a class="index-logo" href="{% url 'users:index' %}"></a>
         <h1>用户注册</h1>
-        <a class="index-font" href="{% url 'index' %}">回到首页</a>
+        <a class="index-font" href="{% url 'users:index' %}">回到首页</a>
       </div>
       <div class="fl slide">
         <div class="imgslide">
@@ -52,7 +52,7 @@
         </div>
 
         <div class="tab-form">
-          <form id="email_register_form" method="post" action="{% url 'register' %}" autocomplete="off">
+          <form id="email_register_form" method="post" action="{% url 'users:register' %}" autocomplete="off">
             <div class="form-group marb20 {% if register_form.errors.email %} errorput {% endif %} ">
               <input type="text" id="id_email" name="email"  placeholder="请输入您的邮箱地址"/>
             </div>
@@ -75,7 +75,7 @@
           {% csrf_token %}
           </form>
         </div>
-        <p class="form-p">已有账号？<a href="{% url 'login' %}">[立即登录]</a></p>
+        <p class="form-p">已有账号？<a href="{% url 'users:login' %}">[立即登录]</a></p>
       </div>
     </div>
   </div>

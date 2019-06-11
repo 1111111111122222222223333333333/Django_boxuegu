@@ -13,9 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
-from django.contrib import admin
+from django.conf import settings
+from django.conf.urls import url,include
+# from django.contrib import admin
+from django.views.static import serve
 
+import xadmin
+from xadmin.plugins import xversion
+xversion.register_models()
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
+    url(r'^xadmin/',include(xadmin.site.urls)),
+    url(r'^captcha/',include('captcha.urls')),
+    url('^',include('users.urls',namespace='users')),
+    url('^',include('organization.urls',namespace='org')),
+    url('^',include('courses.urls',namespace='courses')),
+    url(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
 ]

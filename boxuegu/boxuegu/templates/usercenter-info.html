@@ -6,7 +6,7 @@
 <section>
   <div class="wp">
     <ul class="crumbs">
-      <li><a href="{% url 'index' %}">首页</a>></li>
+      <li><a href="{% url 'users:index' %}">首页</a>></li>
       <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
       <li>个人信息</li>
     </ul>
@@ -33,7 +33,7 @@
                 <span class="fl upload-inp-box" style="margin-left:70px;">
                                 <span class="button btn-green btn-w100" id="jsAvatarBtn">修改头像</span>
                                 <input type="file" name="image" id="avatarUp" class="js-img-up"/>
-                            </span>
+                            </span>sers:
               </label>
               {% csrf_token %}
             </form>
