@@ -6,7 +6,7 @@
 <section>
   <div class="wp">
     <ul class="crumbs">
-      <li><a href="{% url 'index' %}">首页</a>></li>
+      <li><a href="{% url 'users:index' %}">首页</a>></li>
       <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
       <li>个人信息</li>
     </ul>
@@ -28,7 +28,7 @@
               <label class="changearea" for="avatarUp">
                             <span id="avatardiv" class="pic">
                                 <img width="100" height="100" class="js-img-show" id="avatarShow"
-                                     src="/static{{ MEDIA_URL }}{{ request.user.image }}"/>
+                                     src="/static/media/{{ MEDIA_URL }}{{ request.user.image }}"/>
                             </span>
                 <span class="fl upload-inp-box" style="margin-left:70px;">
                                 <span class="button btn-green btn-w100" id="jsAvatarBtn">修改头像</span>

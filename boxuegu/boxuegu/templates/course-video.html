@@ -14,9 +14,9 @@
     <section>
         <div class="wp">
             <ul class="crumbs">
-                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:index' %}">首页</a>></li>
                 <li><a href="{% url 'courses:course_list' %}">公开课程</a> > </li>
-                <li><a href="{% url 'courses:course_detail' course.id %}">课程详情</a> > </li>
+                <li><a href="{% url 'courses:course_detail' %}">课程详情</a> > </li>
                 <li>章节信息</li>
             </ul>
         </div>
@@ -136,7 +136,7 @@
                   <ul class="other-list">
                     {% for relate_course in relate_courses %}
                     <li class="curr">
-                      <a href="{% url 'courses:course_detail' relate_course.id %}" target="_blank">
+                      <a href="{% url 'courses:course_detail' %}" target="_blank">
                         <img src="/static{{ MEDIA_URL }}{{ relate_course.image }}"  alt="{{ relate_course.name }}" />
                         <span class="name autowrap">{{ relate_course.name }}</span>
                       </a>

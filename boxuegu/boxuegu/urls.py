@@ -13,9 +13,22 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import url
+from django.conf.urls import url, include
 from django.contrib import admin
+import xadmin
+
+xadmin.autodiscover()
+
+from xadmin.plugins import xversion
+
+xversion.register_models()
 
 urlpatterns = [
-    url(r'^admin/', admin.site.urls),
+    # url(r'^admin/', admin.site.urls),
+    url(r'^xadmin/', include(xadmin.site.urls)),  # 添加新路由
+    url(r'^', include('courses.urls', namespace='courses')),
+    url(r'^', include('operation.urls')),
+    url(r'^', include('organization.urls', namespace='org')),
+    url(r'^', include('users.urls', namespace='users')),
+    url(r'^captcha/', include('captcha.urls')),
 ]

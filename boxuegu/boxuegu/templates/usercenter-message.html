@@ -6,7 +6,7 @@
 <section>
   <div class="wp">
     <ul class="crumbs">
-      <li><a href="{% url 'index' %}">首页</a>></li>
+      <li><a href="{% url 'users:index' %}">首页</a>></li>
       <li><a href="{% url 'users:user_info' %}">个人中心</a>></li>
       <li>我的消息</li>
     </ul>
@@ -29,7 +29,7 @@
           </ul>
         </div>
         <div class="messagelist">
-          {% for message in messages.object_list %}
+          {% for message in messages %}
           <div class="messages">
             <div class="fr">
               <div class="top">

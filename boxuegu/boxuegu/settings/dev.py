@@ -10,7 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/1.11/ref/settings/
 """
 
-import os,sys
+import os, sys
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -38,13 +37,23 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'xadmin',  # 添加
+    'crispy_forms',  # 添加
+    'reversion',  # 添加(可选)
+    'captcha',  # 图片验证码模块
+
+    'courses.apps.CoursesConfig',
+    'operation.apps.OperationConfig',
+    'organization.apps.OrganizationConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
+    # 'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -55,7 +64,7 @@ ROOT_URLCONF = 'boxuegu.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -70,12 +79,11 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'boxuegu.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
 DATABASES = {
-        'default': {
+    'default': {
         'ENGINE': 'django.db.backends.mysql',  # 数据库引擎
         'HOST': '127.0.0.1',  # 数据库主机
         'PORT': 3306,  # 数据库端口
@@ -114,13 +122,12 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 USE_I18N = True
 
@@ -128,14 +135,12 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
 STATIC_URL = '/static/'
 # 静态文件路径
 STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
 
 # LOGGING = {
 #     'version': 1,
@@ -177,3 +182,19 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 #         },
 #     }
 # }
+
+# 指定用户模型类
+AUTH_USER_MODEL = 'users.UserProfile'
+
+MEDIA_URL = '/static/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
+
+
+# 邮件服务器配置
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # 指定邮件后端
+EMAIL_HOST = 'smtp.163.com'  # 发邮件主机
+EMAIL_PORT = 25  # 发邮件端口
+EMAIL_HOST_USER = 'lizhonghao1357@163.com'  # 授权的邮箱
+EMAIL_HOST_PASSWORD = 'lizhonghao1357'  # 邮箱授权时获得的密码，非注册登录密码
+EMAIL_FROM = '博学谷<lizhonghao1357@163.com>'  # 发件人抬头
+EMAIL_VERIFY_URL = 'http://127.0.0.1:8000/reset/'

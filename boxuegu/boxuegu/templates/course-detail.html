@@ -6,7 +6,7 @@
     <section>
         <div class="wp">
             <ul class="crumbs">
-                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:index' %}">首页</a>></li>
                 <li><a href="{% url 'courses:course_list' %}">公开课程:{{ course.name }}</a>></li>
                 <li>课程详情</li>
             </ul>
@@ -22,7 +22,7 @@
         <div class="left">
           <div class="picbox">
             <div class="tb-booth tb-pic">
-              <img width="440" height="445" src="/static{{ MEDIA_URL }}{{ course.image }}" class="jqzoom"/>
+              <img width="440" height="445" src="/static/media/{{ MEDIA_URL }}{{ course.image }}" class="jqzoom"/>
             </div>
           </div>
           <div class="des">
@@ -38,7 +38,7 @@
               <li><span class="pram word3">课程类别：</span><span title="">{{ course.category }}</span></li>
               <li class="piclist"><span class="pram word4">学习用户：</span>
                 {% for user_course in course.get_learn_users %}
-                  <span class="pic"><img width="40" height="40" src="/static{{ MEDIA_URL }}{{ user_course.user.image}}"/></span>
+                  <span class="pic"><img width="40" height="40" src="/static/media/{{ MEDIA_URL }}{{ user_course.user.image}}"/></span>
                 {% endfor %}
 
               </li>
@@ -62,7 +62,7 @@
           </div>
           <div class="pic">
             <a href="/company/14/">
-              <img width="150" height="80" src="/static{{ MEDIA_URL }}{{ course.course_org.image }}"/>
+              <img width="150" height="80" src="/static/media/{{ MEDIA_URL }}{{ course.course_org.image }}"/>
             </a>
           </div>
           <a href="/company/14/">
@@ -121,7 +121,7 @@
             <dl>
             <dt>
               <a target="_blank" href="">
-                <img width="240" height="220" class="scrollLoading" src="/static{{ MEDIA_URL }}{{ relate_course.image }}"/>
+                <img width="240" height="220" class="scrollLoading" src="/static/media/{{ MEDIA_URL }}{{ relate_course.image }}"/>
               </a>
             </dt>
             <dd>

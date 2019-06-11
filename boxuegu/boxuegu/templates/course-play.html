@@ -26,9 +26,9 @@
     <section>
         <div class="wp">
             <ul class="crumbs">
-                <li><a href="{% url 'index' %}">首页</a>></li>
+                <li><a href="{% url 'users:index' %}">首页</a>></li>
                 <li><a href="{% url 'courses:course_list' %}">公开课程</a> > </li>
-                <li><a href="{% url 'courses:course_detail' course.id %}">{{ course.name }}</a> > </li>
+                <li><a href="{% url 'courses:course_detail' %}">{{ course.name }}</a> > </li>
                 <li>{{ video.name }}</li>
             </ul>
         </div>
@@ -53,8 +53,8 @@
         <div class="content">
           <div class="mod-tab-menu">
             <ul class="course-menu clearfix">
-              <li><a class="ui-tabs-active active" id="learnOn" href="{% url 'courses:course_info' course.id %}"><span>章节</span></a></li>
-              <li><a id="commentOn" class="" href="{% url 'courses:course_comment' course.id %}"><span>评论</span></a></li>
+              <li><a class="ui-tabs-active active" id="learnOn" href="{% url 'courses:course_info' %}"><span>章节</span></a></li>
+              <li><a id="commentOn" class="" href="{% url 'courses:course_comment' %}"><span>评论</span></a></li>
             </ul>
           </div>
           <div id="notice" class="clearfix">
@@ -63,15 +63,15 @@
 
           <div class="mod-chapters">
             {#     章节信息       #}
-            {% for lesson in course.get_course_lesson %}
+            {% for lesson in course %}
               <div class="chapter chapter-active">
               <h3>
                 <strong><i class="state-expand"></i>{{ lesson.name }}</strong>
               </h3>
               <ul class="video">
-                {% for video in lesson.get_lesson_video %}
+                {% for video in lesson %}
                 <li>
-                  <a target="_blank" href='{% url 'courses:video_play' video.id %}' class="J-media-item studyvideo">
+                  <a target="_blank" href='{% url 'courses:video_play' %}' class="J-media-item studyvideo">
                     {{ video.name }}&nbsp;（{{ video.learn_times }}）
                     <i class="study-state"></i>
                   </a>
@@ -92,7 +92,7 @@
                 {% for course_resource in all_resources %}
                 <li>
                   <span><i class="aui-iconfont aui-icon-file"></i>{{ course_resource.name }}</span>
-                  <a href="/static{{ MEDIA_URL }}{{ course_resource.download }}" class="downcode" target="_blank">下载</a>
+                  <a href="/static/media/{{ MEDIA_URL }}{{ course_resource.download }}" class="downcode" target="_blank">下载</a>
                 </li>
                 {% endfor %}
               </ul>
@@ -101,7 +101,7 @@
               <h4>讲师提示</h4>
               <div class="teacher-info">
                 <a href="/u/315464/courses?sort=publish" target="_blank">
-                  <img src='/static{{ MEDIA_URL }}{{ course.teacher.image }}' width='80' height='80'/>
+                  <img src='/static/media/{{ MEDIA_URL }}{{ course.teacher.image }}' width='80' height='80'/>
                 </a>
                 <span class="tit">
                   <a href="/u/315464/courses?sort=publish" target="_blank">{{ course.teacher.name }}</a>
@@ -131,7 +131,7 @@
                   <ul class="other-list">
                     {% for relate_course in relate_courses %}
                     <li class="curr">
-                      <a href="{% url 'courses:course_detail' relate_course.id %}" target="_blank">
+                      <a href="{% url 'courses:course_detail' %}" target="_blank">
                         <img src="/static{{ MEDIA_URL }}{{ relate_course.image }}"  alt="{{ relate_course.name }}" />
                         <span class="name autowrap">{{ relate_course.name }}</span>
                       </a>

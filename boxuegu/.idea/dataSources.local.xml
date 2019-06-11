@@ -2,14 +2,16 @@
 <project version="4">
   <component name="dataSourceStorageLocal">
     <data-source name="boxuegu@localhost" uuid="3c5d763f-7d20-470e-96ff-155fb87877d1">
-      <database-info product="MySQL" version="5.7.26-0ubuntu0.16.04.1-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
+      <database-info product="MySQL" version="5.7.26-0ubuntu0.16.04.1-log" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )" dbms="MYSQL" exact-version="5.7.26">
         <extra-name-characters>#@</extra-name-characters>
         <identifier-quote-string>`</identifier-quote-string>
       </database-info>
       <case-sensitivity plain-identifiers="exact" quoted-identifiers="exact" />
       <secret-storage>master_key</secret-storage>
       <user-name>root</user-name>
+      <introspection-schemas>*:@</introspection-schemas>
       <resolve-scope>boxuegu:</resolve-scope>
+      <unqualified-resolve-schemas>boxuegu:</unqualified-resolve-schemas>
     </data-source>
   </component>
 </project>

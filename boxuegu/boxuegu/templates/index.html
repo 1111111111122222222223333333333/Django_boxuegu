@@ -18,7 +18,7 @@
           {% for banner in all_banners %}
           <li>
             <a href="{{ banner.url }}">
-              <img width="1200" height="478" src="/static{{MEDIA_URL}}{{ banner.image }}"/>
+              <img width="1200" height="478" src="/static/media/{{MEDIA_URL}}{{ banner.image }}"/>
             </a>
           </li>
           {% endfor %}
@@ -74,8 +74,8 @@
               <ul class="imgs">
                 {% for banner_course in banner_courses %}
                 <li>
-                  <a href="{% url 'courses:course_detail' banner_course.id %}">
-                    <img width="470" height="300" src="/static{{ MEDIA_URL }}{{ banner_course.image }}"/>
+                  <a href="{% url 'courses:course_detail' %}">
+                    <img width="470" height="300" src="/static/media/{{ MEDIA_URL }}{{ banner_course.image }}"/>
                   </a>
                 </li>
                 {% endfor %}
@@ -87,11 +87,11 @@
           </div>
           {% for course in courses %}
           <div class="module1_{{ forloop.counter|add:2 }} box">
-            <a href="{% url 'courses:course_detail' course.id %}">
-              <img width="233" height="190" src="/static{{ MEDIA_URL }}{{ course.image }}"/>
+            <a href="{% url 'courses:course_detail' %}">
+              <img width="233" height="190" src="/static/media/{{ MEDIA_URL }}{{ course.image }}"/>
             </a>
             <div class="des">
-              <a href="{% url 'courses:course_detail' course.id %}">
+              <a href="{% url 'courses:course_detail' %}">
                 <h2 title="django入门">{{ course.name }}</h2>
               </a>
               <span class="fl">难度：<i class="key">{{ course.degree }}</i></span>
@@ -123,9 +123,9 @@
           <ul>
             {% for org in course_orgs %}
             <li class="{% if forloop.counter|divisibleby:5 %}five{% endif %}">
-              <a href="{% url 'org:org_home' org.id %}">
+              <a href="{% url 'org:org_home' %}">
                 <div class="company">
-                  <img width="184" height="100" src="/static{{ MEDIA_URL }}{{ org.image }}"/>
+                  <img width="184" height="100" src="/static/media/{{ MEDIA_URL }}{{ org.image }}"/>
                   <div class="score">
                     <div class="circle">
                       <h2>{{ org.tag }}</h2>
